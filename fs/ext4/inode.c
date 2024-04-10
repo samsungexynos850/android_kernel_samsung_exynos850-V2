@@ -4146,9 +4146,10 @@ static int __ext4_block_zero_page_range(handle_t *handle,
 			BUG_ON(!fscrypt_has_encryption_key(inode));
 			BUG_ON(blocksize != PAGE_SIZE);
 
-			if (!bh->b_private)
+			if (!bh->b_private) {
 				WARN_ON_ONCE(fscrypt_decrypt_page(page->mapping->host,
 						page, PAGE_SIZE, 0, page->index));
+			}
 		}
 	}
 	if (ext4_should_journal_data(inode)) {
