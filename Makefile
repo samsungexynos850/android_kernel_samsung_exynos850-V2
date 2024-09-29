@@ -321,8 +321,7 @@ include scripts/subarch.include
 # Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile
 # ARCH		?= $(SUBARCH)
 ARCH            ?= arm64
-CROSS_COMPILE   ?= $(srctree)/toolchain/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-#CROSS_COMPILE   ?= ../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+CROSS_COMPILE   ?= /home/thomas/toolchains/proton-clang/bin/aarch64-linux-gnu-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
@@ -388,8 +387,7 @@ READELF		= llvm-readelf
 OBJSIZE		= llvm-size
 STRIP		= llvm-strip
 else
-CC		= $(srctree)/toolchain/clang/host/linux-x86/clang-r383902/bin/clang
-#CC    = ../PLATFORM/prebuilts/clang/host/linux-x86/clang-r383902/bin/clang
+CC		= /home/thomas/toolchains/proton-clang/bin/clang
 LD		= $(CROSS_COMPILE)ld
 AR		= $(CROSS_COMPILE)ar
 NM		= $(CROSS_COMPILE)nm
