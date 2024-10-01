@@ -293,7 +293,6 @@ struct pdic_data {
 struct pdic_fwupdate_data {
 	struct pdic_misc_data *misc_data;
 	struct pdic_data *ic_data;
-	atomic_t opened;
 };
 
 struct pdic_misc_core {

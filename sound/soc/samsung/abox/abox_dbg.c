@@ -31,6 +31,7 @@
 #include "abox_gic.h"
 #include "abox_core.h"
 #include "abox_dbg.h"
+#include <stdint.h>
 
 #define ABOX_DBG_DUMP_MAGIC_SRAM	0x3935303030504D44ull /* DMP00059 */
 #define ABOX_DBG_DUMP_MAGIC_DRAM	0x3231303038504D44ull /* DMP80012 */
@@ -181,7 +182,7 @@ static void abox_dbg_clear_valid(int idx)
 static ssize_t abox_dbg_read_valid(struct file *file, char __user *user_buf,
 				    size_t count, loff_t *ppos)
 {
-	int idx = (int)file->private_data;
+	int idx = (uintptr_t)file->private_data;
 	bool valid = abox_dbg_dump_valid(idx);
 	char buf_val[4] = {0, }; /* enough to store a bool and "\n\0" */
 
@@ -203,7 +204,7 @@ static const struct file_operations abox_dbg_fops_valid = {
 static ssize_t abox_dbg_read_clear(struct file *file, char __user *user_buf,
 				   size_t count, loff_t *ppos)
 {
-	int idx = (int)file->private_data;
+	int idx = (uintptr_t)file->private_data;
 
 	abox_dbg_clear_valid(idx);
 
@@ -214,7 +215,7 @@ static ssize_t abox_dbg_write_clear(struct file *file,
 				    const char __user *user_buf,
 				    size_t count, loff_t *ppos)
 {
-	int idx = (int)file->private_data;
+	int idx = (uintptr_t)file->private_data;
 
 	abox_dbg_clear_valid(idx);
 
